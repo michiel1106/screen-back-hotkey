@@ -1,0 +1,38 @@
+{
+	"schemaVersion": 1,
+	"id": "screen-back-hotkey",
+	"version": "${version}",
+	"name": "Screen Back Hotkey",
+	"description": "Adds a hotkey that allows you to go to the previous screen if possible.",
+	"authors": [
+		"Bikerboys"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/screen-back-hotkey/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"bikerboys.screenbackhotkey.ScreenBackHotkey"
+		],
+		"client": [
+			"bikerboys.screenbackhotkey.client.ScreenBackHotkeyClient"
+		]
+	},
+	"mixins": [
+		"screen-back-hotkey.mixins.json",
+		{
+			"config": "screen-back-hotkey.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.19.3",
+		"minecraft": "~26.2",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
