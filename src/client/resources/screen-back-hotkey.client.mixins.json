@@ -3,12 +3,15 @@
 	"package": "bikerboys.screenbackhotkey.client.mixin",
 	"compatibilityLevel": "JAVA_25",
 	"client": [
-      "ScreenMixin"
+		"ScreenMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
 	},
 	"overwrites": {
 		"requireAnnotations": true
-	}
+	},
+	"mixins": [
+		"ContainerEventHandlerMixin"
+	]
 }

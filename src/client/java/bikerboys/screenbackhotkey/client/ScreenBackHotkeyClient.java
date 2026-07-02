@@ -10,23 +10,14 @@ import net.minecraft.client.gui.screens.*;
 import org.lwjgl.glfw.*;
 
 public class ScreenBackHotkeyClient implements ClientModInitializer {
+	public static long msSinceClick = System.nanoTime();
 
-	KeyMapping backHotKey = new KeyMapping("screenbackhotkey.backhotkey", InputConstants.Type.MOUSE ,GLFW.GLFW_MOUSE_BUTTON_4, KeyMapping.Category.MISC);
+
+	public static KeyMapping backHotKey = new KeyMapping("screenbackhotkey.backhotkey", InputConstants.Type.MOUSE ,GLFW.GLFW_MOUSE_BUTTON_4, KeyMapping.Category.MISC);
 
 
 	@Override
 	public void onInitializeClient() {
 		KeyMappingRegistryImpl.registerKeyMapping(backHotKey);
-
-		ScreenEvents.AFTER_INIT.register((client, screen, scaledWidth, scaledHeight) -> {
-			ScreenMouseEvents.beforeMouseClick(screen).register((screen1, mouseButtonEvent) -> {
-				if (mouseButtonEvent.button() == GLFW.GLFW_MOUSE_BUTTON_4 && screen1 instanceof IScreenBack back) {
-					back.screen_back_hotkey$goBack();
-				}
-			});
-		});
-
-
-
 	}
 }

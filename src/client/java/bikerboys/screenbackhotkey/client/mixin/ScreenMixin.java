@@ -21,25 +21,37 @@ import java.lang.reflect.*;
 import java.util.*;
 
 @Mixin(Screen.class)
-public abstract class ScreenMixin implements IScreenBack {
+public abstract class ScreenMixin extends AbstractContainerEventHandler implements IScreenBack {
 	@Shadow
 	protected abstract <T extends GuiEventListener & Renderable & NarratableEntry> T addRenderableWidget(T widget);
+
 
 	@Shadow
 	@Final
 	private List<Renderable> renderables;
+
+	@Shadow
+	public abstract void onClose();
+
+	@Shadow
+	public abstract boolean shouldCloseOnEsc();
 
 	@Override
 	public void screen_back_hotkey$goBack() {
 		if (searchForButtons()) return;
 		if (tryFields()) return;
 		if (tryDepthSearchForFields()) return;
+		if (shouldCloseOnEsc()) {
+			onClose();
+			return;
+		}
 	}
 
 
 
 	@Unique
     private boolean tryFields() {
+
 		Screen screen = (Screen)(Object)this;
 
 		Field[] declaredFields = screen.getClass().getDeclaredFields();
@@ -123,9 +135,10 @@ public abstract class ScreenMixin implements IScreenBack {
 		return false;
 	}
 
-	private boolean isBackString(String string) {
+	@Unique
+    private boolean isBackString(String string) {
 		switch (string.toLowerCase()) {
-			case "back", "return", "done" -> {
+			case "back", "return", "done", "cancel" -> {
 				return true;
 			}
 		}
@@ -137,7 +150,7 @@ public abstract class ScreenMixin implements IScreenBack {
 	@Unique
     private boolean isSpecialName(String name) {
         switch (name.toLowerCase()) {
-            case "previous", "previousscreen", "lastscreen", "parent" -> {
+            case "previous", "previousscreen", "lastscreen", "parent", "parentscreen" -> {
                 return true;
             }
         }
