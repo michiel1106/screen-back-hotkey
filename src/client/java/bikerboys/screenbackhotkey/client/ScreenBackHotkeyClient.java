@@ -16,7 +16,7 @@ public class ScreenBackHotkeyClient implements ClientModInitializer {
 	public static long msSinceClick = System.nanoTime();
 	public static Language languageinstance = Language.getInstance();
 
-	public static KeyMapping backHotKey = new KeyMapping("screenbackhotkey.backhotkey", InputConstants.Type.MOUSE ,GLFW.GLFW_MOUSE_BUTTON_4, KeyMapping.Category.MISC);
+	public static KeyMapping backHotKey = new KeyMapping("Back-A-Screen Hotkey", InputConstants.Type.MOUSE ,GLFW.GLFW_MOUSE_BUTTON_4, KeyMapping.CATEGORY_MISC);
 
 
 	@Override

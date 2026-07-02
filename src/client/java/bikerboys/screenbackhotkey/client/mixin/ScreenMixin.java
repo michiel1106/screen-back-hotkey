@@ -8,7 +8,6 @@ import net.minecraft.client.gui.components.*;
 import net.minecraft.client.gui.components.events.*;
 import net.minecraft.client.gui.narration.*;
 import net.minecraft.client.gui.screens.*;
-import net.minecraft.client.input.*;
 import net.minecraft.client.resources.language.*;
 import net.minecraft.locale.*;
 import net.minecraft.network.chat.*;
@@ -64,7 +63,7 @@ public abstract class ScreenMixin extends AbstractContainerEventHandler implemen
 					field.setAccessible(true);
 					Screen o = (Screen) field.get(screen);
 
-					Minecraft.getInstance().setScreenAndShow(o);
+					Minecraft.getInstance().setScreen(o);
 					return true;
 
 				} catch (IllegalAccessException e) {
@@ -98,7 +97,7 @@ public abstract class ScreenMixin extends AbstractContainerEventHandler implemen
 					try {
 						declaredField.setAccessible(true);
 						Screen field = (Screen) declaredField.get(screen);
-						Minecraft.getInstance().setScreenAndShow(field);
+						Minecraft.getInstance().setScreen(field);
 						return true;
 					} catch (IllegalAccessException e) {
 						if (FabricLoader.getInstance().isDevelopmentEnvironment()) {
@@ -126,7 +125,7 @@ public abstract class ScreenMixin extends AbstractContainerEventHandler implemen
 				if (button.getMessage().getContents() instanceof TranslatableContents translatableContents) {
 					String orDefault = defaultInstance.getOrDefault(translatableContents.getKey());
 					if (isBackString(orDefault)) {
-						button.onPress(new MouseButtonInfo(1, 0));
+						button.onPress();
 						return true;
 					}
 				}
