@@ -29,7 +29,7 @@ public interface ContainerEventHandlerMixin {
 
                 if (Minecraft.getInstance().screen instanceof IScreenBack back) {
                     back.screen_back_hotkey$goBack();
-                    System.out.println("mouseclicksucced");
+
                 }
             }
             ScreenBackHotkeyClient.msSinceClick = System.nanoTime();

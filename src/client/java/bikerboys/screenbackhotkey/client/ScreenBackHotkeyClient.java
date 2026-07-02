@@ -4,7 +4,7 @@ import com.mojang.blaze3d.platform.*;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.*;
 import net.fabricmc.fabric.api.client.screen.v1.*;
-import net.fabricmc.fabric.impl.client.keymapping.*;
+import net.fabricmc.fabric.impl.client.keybinding.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.screens.*;
 import net.minecraft.locale.*;
@@ -21,6 +21,6 @@ public class ScreenBackHotkeyClient implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
-        KeyMappingRegistryImpl.registerKeyMapping(backHotKey);
+		KeyBindingRegistryImpl.registerKeyBinding(backHotKey);
 	}
 }

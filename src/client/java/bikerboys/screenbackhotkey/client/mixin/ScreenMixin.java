@@ -39,9 +39,6 @@ public abstract class ScreenMixin extends AbstractContainerEventHandler implemen
 
 	@Override
 	public void screen_back_hotkey$goBack() {
-		if (languageinstance != null) {
-			System.out.println(languageinstance.getOrDefault("upgradeWorld.canceled.message"));
-		}
 
 		if (searchForButtons()) return;
 		if (tryFields()) return;
