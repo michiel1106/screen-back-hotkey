@@ -27,7 +27,7 @@ public interface ContainerEventHandlerMixin {
             boolean matchesMouse = ScreenBackHotkeyClient.backHotKey.matchesMouse(event);
             if (matchesMouse) {
 
-                if (Minecraft.getInstance().gui.screen() instanceof IScreenBack back) {
+                if (Minecraft.getInstance().screen instanceof IScreenBack back) {
                     back.screen_back_hotkey$goBack();
                     System.out.println("mouseclicksucced");
                 }
@@ -45,7 +45,7 @@ public interface ContainerEventHandlerMixin {
             return;
         } else  {
             if (matchesKeyboard) {
-                if (Minecraft.getInstance().gui.screen() instanceof IScreenBack back) {
+                if (Minecraft.getInstance().screen instanceof IScreenBack back) {
                     back.screen_back_hotkey$goBack();
                 }
             }

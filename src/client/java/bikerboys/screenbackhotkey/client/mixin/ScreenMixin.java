@@ -1,6 +1,7 @@
 package bikerboys.screenbackhotkey.client.mixin;
 
 import bikerboys.screenbackhotkey.client.*;
+import static bikerboys.screenbackhotkey.client.ScreenBackHotkeyClient.languageinstance;
 import net.fabricmc.loader.api.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.components.*;
@@ -38,6 +39,10 @@ public abstract class ScreenMixin extends AbstractContainerEventHandler implemen
 
 	@Override
 	public void screen_back_hotkey$goBack() {
+		if (languageinstance != null) {
+			System.out.println(languageinstance.getOrDefault("upgradeWorld.canceled.message"));
+		}
+
 		if (searchForButtons()) return;
 		if (tryFields()) return;
 		if (tryDepthSearchForFields()) return;
@@ -117,7 +122,7 @@ public abstract class ScreenMixin extends AbstractContainerEventHandler implemen
 
 	@Unique
     private boolean searchForButtons() {
-		Language defaultInstance = Language.DEFAULT_INSTANCE;
+		Language defaultInstance = languageinstance;
 
 		for (Renderable renderable : renderables) {
 			if (renderable instanceof Button button) {
